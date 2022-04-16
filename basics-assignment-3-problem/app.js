@@ -5,13 +5,11 @@ const app = Vue.createApp({
     };
   },
   watch: {
-    counter(value) {
-      if (value > 37) {
-        const that = this;
-        setTimeout(function () {
-          that.counter = 0;
-        }, 5000);
-      }
+    limit() {
+      const that = this;
+      setTimeout(function() {
+        that.counter = 0;
+      }, 5000);
     }
   },
   computed: {
