@@ -2,18 +2,25 @@ const app = Vue.createApp({
   data() {
     return {
       counter: 0,
-      name: ''
+      name: '',
+      lastName: ''
     };
+  },
+  watch: {
+    counter(value){
+      if (value > 50){
+        this.counter = 0;
+      };
+    }
   },
   // computed = Ne relance pas tout le code controlé par Vue
   // Best use computed for output values than methods
   computed: {
     fullname() {
-      console.log('Running again...');
       if (this.name === '') {
         return '';
       }
-      return this.name + ' ' + 'Camilo';
+      return this.name + ' ' + this.lastName;
     },
   },
   methods: {
