@@ -5,6 +5,17 @@ const app = Vue.createApp({
       name: ''
     };
   },
+  // computed = Ne relance pas tout le code controlé par Vue
+  // Best use computed for output values than methods
+  computed: {
+    fullname() {
+      console.log('Running again...');
+      if (this.name === '') {
+        return '';
+      }
+      return this.name + ' ' + 'Camilo';
+    },
+  },
   methods: {
     resetInput(){
       this.name= "";
