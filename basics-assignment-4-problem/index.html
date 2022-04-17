@@ -19,9 +19,9 @@
     <section id="assignment">
       <!-- 1) Fetch the user input and use it as a CSS class -->
       <!-- The entered class should be added to the below paragraph -->
-      <input type="text" />
+      <input type="text" v-model="classSelected"/>
       <!-- (available classes: "user1", "user2") -->
-      <p>
+      <p :class="{user1: classSelected === 'user1', user2: classSelected === 'user2'}">
         Style me!
       </p>
       <button>Toggle Paragraph</button>
