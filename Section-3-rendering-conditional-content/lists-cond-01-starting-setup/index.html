@@ -18,12 +18,19 @@
     </header>
     <section id="user-goals">
       <h2>My course goals</h2>
-      <input type="text" />
-      <button>Add Goal</button>
-      <p>No goals have been added yet - please start adding some!</p>
-      <ul>
-        <li>Goal</li>
+      <input type="text" v-model="inputValueGoal"/>
+      <button @click="addGoal">Add Goal</button>
+      <!-- v-show = met en display:none, ne rafraîchit pas DOM -->
+      <!-- v-if, v-else => rafraîchit le DOM -->
+      <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
+      <ul v-else>
+        <!-- v-for =>.each -->
+        <!-- goal -> name random // goals it's the array -->
+        <li v-for="(hello, index) in goals" @click="removeGoal(index)">{{ hello }} - {{ index }}</li>
       </ul>
+      <!-- <ul>
+        <li v-for="(value, key) in {name: 'Catarina', age: 24}">{{ key }} : {{ value }}</li>
+      </ul> -->
     </section>
   </body>
 </html>
