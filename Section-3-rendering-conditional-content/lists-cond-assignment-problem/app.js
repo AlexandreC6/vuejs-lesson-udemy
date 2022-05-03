@@ -3,15 +3,20 @@ const app = Vue.createApp ({
     return {
       inputTask: '',
       tasks: [],
-      show: true,
+      taskIsVisible: true,
     };
+  },
+  computed: {
+    buttonCaption () {
+      return this.taskIsVisible ? "Hide the list" : 'Show the list'
+    }
   },
   methods: {
     addTask (){
       this.tasks.push(this.inputTask);
     },
     hiddenTask () {
-      this.show = !this.show;
+      this.taskIsVisible = !this.taskIsVisible;
     }
   }
 });
