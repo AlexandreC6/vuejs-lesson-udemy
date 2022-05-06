@@ -53,6 +53,15 @@ const app = Vue.createApp({
     }
   },
   methods: {
+    surrender (){
+      this.winner = 'monster';
+    },
+    startNewGame (){
+      this.playerHealth= 100;
+      this.monsterHealth= 100;
+      this.currentRound= 0;
+      this.winner= null;
+    },
     attackMonster () {
       // Calculaite the number of round
       this.currentRound ++;
