@@ -8,7 +8,8 @@ const app = Vue.createApp({
       playerHealth: 100,
       monsterHealth: 100,
       currentRound: 0,
-      winner: null
+      winner: null,
+      logMessages: []
     };
   },
   // Quand une property change, exécute le code
@@ -61,23 +62,30 @@ const app = Vue.createApp({
       this.monsterHealth= 100;
       this.currentRound= 0;
       this.winner= null;
+      this.logMessages= [];
+
     },
+    // Player attack the monster
     attackMonster () {
       // Calculaite the number of round
       this.currentRound ++;
       // Calculate a number range between 5 and 12
       const attackValue = getRandomValue(5, 12);
       this.monsterHealth -= attackValue;
+      this.addLogMessages('player', 'attack', attackValue);
       this.attackPlayer();
     },
+    // Monster attack player
     attackPlayer () {
       const attackValue = getRandomValue(8, 15);
       this.playerHealth -= attackValue;
+      this.addLogMessages('monster', 'attack', attackValue);
     },
     specialAttackPlayer (){
       this.currentRound ++;
       const attackValue = getRandomValue(15, 20);
       this.monsterHealth -= attackValue;
+      this.addLogMessages('player', 'special-attack', attackValue);
       this.attackPlayer();
     },
     healPlayer() {
@@ -88,7 +96,17 @@ const app = Vue.createApp({
       } else {
         this.playerHealth += healValue;
       };
+      this.addLogMessages('player', 'heal', healValue) ;
       this.attackPlayer();
+    },
+    addLogMessages(who, what, value){
+      // .unshift => add in begin of array
+      // .push => add in end of array
+      this.logMessages.unshift({
+        actionBy: who,
+        actionType: what,
+        actionValue: value
+      });
     }
   }
 });
